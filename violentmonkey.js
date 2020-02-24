@@ -8,7 +8,7 @@
 // @downloadURL     https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
 // @match           *://www.anacon.org/*
 // @grant           none
-// @run-at          document-idle
+// @run-at          document-end
 // ==/UserScript==
 //if (document.querySelector('#form_id')) {
 //    setTimeout(function(){ document.querySelector('#form_id').submit(); }, 1000);
