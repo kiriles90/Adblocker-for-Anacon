@@ -23,13 +23,13 @@ if (document.querySelector("[name='cmd']")) {
 if (document.querySelector("[name='hosted_button_id']")) {
     document.querySelector("[name='hosted_button_id']").remove();
 }
-var retries = 0;
+var retries = document.querySelectorAll(".adsbygoogle").length;
 var observer = new MutationObserver(function (mutations, me) {
     var canvas = document.querySelector(".adsbygoogle");
     if (canvas) {
         document.querySelector(".adsbygoogle").remove();
-        retries = retries + 1;
-        if (retries > 2) {
+        retries = retries - 1;
+        if (retries <= 0) {
             me.disconnect();
         }
         return;
