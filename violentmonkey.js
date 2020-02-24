@@ -10,11 +10,9 @@
 // @grant           none
 // @run-at          document-end
 // ==/UserScript==
-//if (document.querySelector('#form_id')) {
-//    setTimeout(function(){ document.querySelector('#form_id').submit(); }, 1000);
-//}
 if (document.querySelector("[src*='exo.jpg']")) {
-    document.querySelector("[src*='exo.jpg']").style.opacity = 0.9;
+    document.querySelector("[src*='exo.jpg']").style.opacity = 0;
+    setTimeout(function(){ document.querySelector("[src*='exo.jpg']").click(); }, 1000);
 }
 if (document.querySelector("[name='submit']")) {
     document.querySelectorAll("[name='submit']")[0].remove();
@@ -25,10 +23,19 @@ if (document.querySelector("[name='cmd']")) {
 if (document.querySelector("[name='hosted_button_id']")) {
     document.querySelector("[name='hosted_button_id']").remove();
 }
-if (document.querySelector(".adsbygoogle")) {
-    var c = document.querySelectorAll(".adsbygoogle");
-    const keys = Object.keys(c)
-    for (const key of keys) {
-        c[key].remove();
+var retries = 0;
+var observer = new MutationObserver(function (mutations, me) {
+    var canvas = document.querySelector(".adsbygoogle");
+    if (canvas) {
+        document.querySelector(".adsbygoogle").remove();
+        retries = retries + 1;
+        if (retries > 2) {
+            me.disconnect();
+        }
+        return;
     }
-}
+});
+observer.observe(document, {
+    childList: true,
+    subtree: true
+});
