@@ -13,9 +13,9 @@
 //if (document.querySelector('#form_id')) {
 //    setTimeout(function(){ document.querySelector('#form_id').submit(); }, 1000);
 //}
-//if (document.querySelector("[src*='exo.jpg']")) {
-//    document.querySelector("[src*='exo.jpg']").style.opacity = 0;
-//}
+if (document.querySelector("[src*='exo.jpg']")) {
+    document.querySelector("[src*='exo.jpg']").style.opacity = 0.9;
+}
 if (document.querySelector("[name='submit']")) {
     document.querySelectorAll("[name='submit']")[0].remove();
 }
