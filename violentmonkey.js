@@ -29,7 +29,7 @@ var observer = new MutationObserver(function (mutations, me) {
     if (canvas) {
         document.querySelector(".adsbygoogle").remove();
         retries = retries - 1;
-        if (retries <= 0) {
+        if (retries < 0) {
             me.disconnect();
         }
         return;
