@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Adblocker for Anacon
 // @namespace       github.com/kiriles90
-// @version         1.3
+// @version         1.4
 // @date            2021-01-04
 // @author          github.com/kiriles90
 // @updateURL       https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
@@ -23,12 +23,17 @@ if (document.querySelector("[name='cmd']")) {
 if (document.querySelector("[name='hosted_button_id']")) {
     document.querySelector("[name='hosted_button_id']").remove();
 }
-var retries = document.querySelectorAll(".adsbygoogle").length || document.querySelectorAll("[name^='bdvifrmloc']").length;
+var retries = document.querySelectorAll(".adsbygoogle").length !== 0 ? document.querySelectorAll(".adsbygoogle").length : document.querySelectorAll("[name^='bdvifrmloc']").length;
 var observer = new MutationObserver(function (mutations, me) {
-    var canvas = document.querySelector(".adsbygoogle") || document.querySelectorAll("[name^='bdvifrmloc']")[0];
-    if (canvas) {
-        document.querySelectorAll("[name^='bdvifrmloc']")[0].remove();
-        document.querySelector(".adsbygoogle").remove();
+    var canvas = document.querySelector(".adsbygoogle");
+    var canvas2 = document.querySelectorAll("[name^='bdvifrmloc']")[0];
+    if (canvas || canvas2) {
+        if (document.querySelectorAll("[name^='bdvifrmloc']")[0]) {
+            document.querySelectorAll("[name^='bdvifrmloc']")[0].remove();
+        }
+        if (document.querySelector(".adsbygoogle")) {
+            document.querySelector(".adsbygoogle").remove();
+        }
         if (document.querySelector(".fp-player")) {
             document.querySelector(".fp-player").style.backgroundColor = "#000";
         }
