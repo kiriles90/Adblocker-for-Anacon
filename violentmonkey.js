@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Adblocker for Anacon
 // @namespace       github.com/kiriles90
-// @version         1.5
+// @version         1.6
 // @date            2021-01-04
 // @author          github.com/kiriles90
 // @updateURL       https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
@@ -27,8 +27,7 @@ var observer = new MutationObserver(function (mutations, me) {
     canvas ? canvas.remove() : null;
     canvas2 ? canvas2.remove() : null;
     fpplayer ? fpplayer.style.backgroundColor = "#000" : null;
-    retries = retries - 1;
-    retries < 0 ? me.disconnect() : null;
+    retries < 1 ? me.disconnect() : retries = retries - 1;
     return;
 });
 observer.observe(document, {
