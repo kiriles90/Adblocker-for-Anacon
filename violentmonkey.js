@@ -2,7 +2,7 @@
 // @name            Adblocker for Anacon
 // @namespace       github.com/kiriles90
 // @version         1.8
-// @date            2021-01-04
+// @date            2021-01-05
 // @author          github.com/kiriles90
 // @updateURL       https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
 // @downloadURL     https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
