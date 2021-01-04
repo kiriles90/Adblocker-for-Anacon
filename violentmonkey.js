@@ -23,10 +23,11 @@ if (document.querySelector("[name='cmd']")) {
 if (document.querySelector("[name='hosted_button_id']")) {
     document.querySelector("[name='hosted_button_id']").remove();
 }
-var retries = document.querySelectorAll(".adsbygoogle").length;
+var retries = document.querySelectorAll(".adsbygoogle").length || document.querySelectorAll("[name^='bdvifrmloc']").length;
 var observer = new MutationObserver(function (mutations, me) {
-    var canvas = document.querySelector(".adsbygoogle");
+    var canvas = document.querySelector(".adsbygoogle") || document.querySelectorAll("[name^='bdvifrmloc']")[0];
     if (canvas) {
+        document.querySelectorAll("[name^='bdvifrmloc']")[0].remove();
         document.querySelector(".adsbygoogle").remove();
         if (document.querySelector(".fp-player")) {
             document.querySelector(".fp-player").style.backgroundColor = "#000";
