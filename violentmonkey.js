@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Adblocker for Anacon
 // @namespace       github.com/kiriles90
-// @version         1.4
+// @version         1.5
 // @date            2021-01-04
 // @author          github.com/kiriles90
 // @updateURL       https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
@@ -10,39 +10,26 @@
 // @grant           none
 // @run-at          document-end
 // ==/UserScript==
-if (document.querySelector("[src*='exo.jpg']")) {
-    document.querySelector("[src*='exo.jpg']").style.opacity = 0;
-    setTimeout(function(){ document.querySelector("[src*='exo.jpg']").click(); }, 1000);
-}
-if (document.querySelector("[name='submit']")) {
-    document.querySelectorAll("[name='submit']")[0].remove();
-}
-if (document.querySelector("[name='cmd']")) {
-    document.querySelector("[name='cmd']").remove();
-}
-if (document.querySelector("[name='hosted_button_id']")) {
-    document.querySelector("[name='hosted_button_id']").remove();
-}
-var retries = document.querySelectorAll(".adsbygoogle").length !== 0 ? document.querySelectorAll(".adsbygoogle").length : document.querySelectorAll("[name^='bdvifrmloc']").length;
+const exo = document.querySelector("[src*='exo.jpg']"),
+      submit = document.querySelector("[name='submit']"),
+      submitall = document.querySelectorAll("[name='submit']")[0],
+      cmd = document.querySelector("[name='cmd']"),
+      hosted = document.querySelector("[name='hosted_button_id']");
+exo ? (exo.style.opacity = 0, setTimeout(function(){ exo.click(); }, 1000)) : null;
+submit ? submitall.remove() : null;
+cmd ? cmd.remove() : null;
+hosted ? hosted.remove() : null;
 var observer = new MutationObserver(function (mutations, me) {
-    var canvas = document.querySelector(".adsbygoogle");
-    var canvas2 = document.querySelectorAll("[name^='bdvifrmloc']")[0];
-    if (canvas || canvas2) {
-        if (document.querySelectorAll("[name^='bdvifrmloc']")[0]) {
-            document.querySelectorAll("[name^='bdvifrmloc']")[0].remove();
-        }
-        if (document.querySelector(".adsbygoogle")) {
-            document.querySelector(".adsbygoogle").remove();
-        }
-        if (document.querySelector(".fp-player")) {
-            document.querySelector(".fp-player").style.backgroundColor = "#000";
-        }
-        retries = retries - 1;
-        if (retries < 0) {
-            me.disconnect();
-        }
-        return;
-    }
+    var retries = document.querySelectorAll(".adsbygoogle").length !== 0 ? document.querySelectorAll(".adsbygoogle").length : document.querySelectorAll("[name^='bdvifrmloc']").length;
+    const canvas = document.querySelector(".adsbygoogle"),
+          canvas2 = document.querySelectorAll("[name^='bdvifrmloc']")[0],
+          fpplayer = document.querySelector(".fp-player");
+    canvas ? canvas.remove() : null;
+    canvas2 ? canvas2.remove() : null;
+    fpplayer ? fpplayer.style.backgroundColor = "#000" : null;
+    retries = retries - 1;
+    retries < 0 ? me.disconnect() : null;
+    return;
 });
 observer.observe(document, {
     childList: true,
