@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name            Adblocker for Anacon
 // @namespace       github.com/kiriles90
-// @version         3.0
-// @date            2021-02-05
+// @version         3.1
+// @date            2021-08-15
 // @author          github.com/kiriles90
 // @updateURL       https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
 // @downloadURL     https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
@@ -10,10 +10,10 @@
 // @grant           none
 // @run-at          document-end
 // ==/UserScript==
-const ads = document.querySelectorAll("center, .google-center-div, .google-auto-placed, .mys-wrapper, root_template_div, #banner"),
+const ads = document.querySelectorAll("center, .google-center-div, .google-auto-placed, .mys-wrapper, root_template_div, .adsbygoogle, #banner"),
       content = document.querySelector(".content"),
       fpplayer = document.querySelector(".fp-player"),
-      exo = document.querySelector("[src*='exo.jpg']");
+      exo = document.querySelector(".fp-play");
 ads ? Array.from(ads).forEach(ad => ad.remove()) : null;
 content ? (content.parentElement.style = 'height:100vh;width:100%;display:table;', content.style = 'height:100%;display:table-cell;vertical-align:middle;') : null;
 fpplayer ? fpplayer.style.backgroundColor = "#000" : null;
