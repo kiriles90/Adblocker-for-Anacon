@@ -1,14 +1,14 @@
 // ==UserScript==
-// @name            Adblocker for Anacon
-// @namespace       github.com/kiriles90
-// @version         1.5
-// @date            2022-05-28
-// @author          github.com/kiriles90
-// @updateURL       https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
-// @downloadURL     https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
-// @match           *://www.anacon.org/*
-// @grant           none
-// @run-at          document-end
+// @name        Adblocker for Anacon
+// @namespace   github.com/kiriles90
+// @version     1.5
+// @date        2022-05-28
+// @author      github.com/kiriles90
+// @updateURL   https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
+// @downloadURL https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
+// @match       *://www.anacon.org/*
+// @grant       none
+// @run-at      document-end
 // ==/UserScript==
 const ads = document.querySelectorAll("center, .google-center-div, .google-auto-placed, .mys-wrapper, root_template_div, .adsbygoogle, #banner"),
       content = document.querySelector(".content"),
