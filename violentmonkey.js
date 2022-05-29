@@ -25,7 +25,6 @@ var wth = (function() {
         exo ? exo.click() : null;
         exo2 && exo2.classList.contains("fp-visible") ? exo2.click() : null;
     }, 1000);
-  console.log('run')
 });
 wth();
 setTimeout(function(){ wth(); }, 2000);
