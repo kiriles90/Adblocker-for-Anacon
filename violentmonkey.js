@@ -10,12 +10,23 @@
 // @grant       none
 // @run-at      document-end
 // ==/UserScript==
-const ads = document.querySelectorAll("center, .google-center-div, .google-auto-placed, .mys-wrapper, root_template_div, .adsbygoogle, #banner"),
-      content = document.querySelector(".content"),
-      fpplayer = document.querySelector(".fp-player"),
-      exo = document.querySelector("[src*='exo.jpg']");
-      exo2 = document.querySelector(".fp-play");
-ads ? Array.from(ads).forEach(ad => ad.remove()) : null;
-content ? (content.parentElement.style = 'height:100vh;width:100%;display:table;', content.style = 'height:100%;display:table-cell;vertical-align:middle;') : null;
-fpplayer ? fpplayer.style.backgroundColor = "#000" : null;
-exo ? (exo.style.opacity = 0, setTimeout(function(){ exo.click(); exo2.click(); ads ? Array.from(ads).forEach(ad => ad.remove()) : null;}, 1000), setTimeout(function(){ exo2.click(); }, 5000)) : null;
+var wth = (function() {
+    let ads = document.querySelectorAll("center, .adsbygoogle"),
+        content = document.querySelector(".content"),
+        fpplayer = document.querySelector(".fp-player"),
+        exo = document.querySelector("[src*='exo.jpg']");
+    ads ? Array.from(ads).forEach(ad => ad.remove()) : null;
+    content ? (content.parentElement.style = 'height:100vh;width:100%;display:table;', content.style = 'height:100%;display:table-cell;vertical-align:middle;') : null;
+    fpplayer && fpplayer.style.backgroundColor !== "#000" ? fpplayer.style.backgroundColor = "#000" : null;
+    exo && exo.style.opacity !== 0 ? exo.style.opacity = 0 : null;
+    setTimeout(function(){
+        let exo = document.querySelector("[src*='exo.jpg']"),
+            exo2 = document.querySelector(".fp-play");
+        exo ? exo.click() : null;
+        exo2 && exo2.classList.contains("fp-visible") ? exo2.click() : null;
+    }, 1000);
+  console.log('run')
+});
+wth();
+setTimeout(function(){ wth(); }, 2000);
+setTimeout(function(){ wth(); }, 4000);
