@@ -7,8 +7,8 @@
 // @updateURL   https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
 // @downloadURL https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
 // @match       *://*anacon.org/*
-// @grant       none
 // @run-at      document-end
+// @grant       none
 // ==/UserScript==
 (() => {
     const ads = [
