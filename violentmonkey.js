@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Adblocker for Anacon
 // @namespace   github.com/kiriles90
-// @version     2.0
+// @version     3.0
 // @date        2025-06-10
 // @author      github.com/kiriles90
 // @updateURL   https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
