@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name        Adblocker for Anacon
 // @namespace   github.com/kiriles90
-// @version     1.10
-// @date        2025-06-01
+// @version     2.0
+// @date        2025-06-10
 // @author      github.com/kiriles90
 // @updateURL   https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
 // @downloadURL https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
@@ -10,23 +10,45 @@
 // @grant       none
 // @run-at      document-end
 // ==/UserScript==
-var wth = (function() {
-    let ads = document.querySelectorAll("center, .adsbygoogle, .donate-button, .fc-message-root, .ft-container ft-left-pos, .ipr-container"),
-        content = document.querySelector(".content"),
-        fpplayer = document.querySelector(".fp-player"),
-        exo = document.querySelector("[src*='exo.jpg']");
-    ads ? Array.from(ads).forEach(ad => ad.remove()) : null;
-    content ? (content.parentElement.style = 'height:100vh;width:100%;display:table;', content.style = 'height:100%;display:table-cell;vertical-align:middle;') : null;
-    fpplayer && fpplayer.style.backgroundColor !== "#000" ? fpplayer.style.backgroundColor = "#000" : null;
-    exo && exo.style.opacity !== 0 ? exo.style.opacity = 0 : null;
-    setTimeout(function(){
-        let exo = document.querySelector("[src*='exo.jpg']"),
-            exo2 = document.querySelector(".fp-play");
-        exo ? exo.click() : null;
-        exo2 && exo2.classList.contains("fp-visible") ? exo2.click() : null;
-    }, 1000);
-});
-wth();
-setTimeout(function(){ wth(); }, 2000);
-setTimeout(function(){ wth(); }, 4000);
-setTimeout(function(){ wth(); }, 20000);
+(() => {
+    const ads = [
+        'center',
+        '.adsbygoogle',
+        '.donate-button',
+        '.fc-message-root',
+        '.ft-container ft-left-pos',
+        '.ipr-container'
+    ].join(',');
+    const clean = () => {
+        document.querySelectorAll(ads).forEach(el => el.remove());
+        const content = document.querySelector('.content');
+        if (content) {
+            Object.assign(content.parentElement.style, {
+                height: '100vh',
+                width: '100%',
+                display: 'table'
+            });
+            Object.assign(content.style, {
+                height: '100%',
+                display: 'table-cell',
+                verticalAlign: 'middle'
+            });
+        }
+        const player = document.querySelector('.fp-player');
+        if (player && player.style.backgroundColor !== '#000') {
+            player.style.backgroundColor = '#000';
+        }
+        const exoImg = document.querySelector("[src*='exo.jpg']");
+        if (exoImg && exoImg.style.opacity !== '0') {
+            exoImg.style.opacity = '0';
+        }
+        setTimeout(() => {
+            document.querySelector("[src*='exo.jpg']")?.click();
+            const playBtn = document.querySelector('.fp-play');
+            if (playBtn?.classList.contains('fp-visible')) {
+                playBtn.click();
+            }
+        }, 1000);
+    };
+    [0, 2000, 4000, 20000].forEach(delay => setTimeout(clean, delay));
+})();
