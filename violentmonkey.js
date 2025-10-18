@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name        Adblocker for Anacon
 // @namespace   github.com/kiriles90
-// @version     4.0
-// @date        2025-07-13
+// @version     4.2
+// @date        2025-10-18
 // @author      github.com/kiriles90
 // @updateURL   https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
 // @downloadURL https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
@@ -27,14 +27,14 @@
         }
         const player = document.querySelector('.fp-player');
         if (player) player.style.backgroundColor = '#000';
-        const exoImg = document.querySelector("[src*='exo.jpg']");
+        const exoImg = document.querySelector("[src*='play.webp']");
         if (exoImg) exoImg.style.opacity = '0';
         requestAnimationFrame(() => {
-            document.querySelector("[src*='exo.jpg']")?.click();
-            document.querySelector('.fp-play.fp-visible')?.click();
+            document.querySelector("[src*='play.webp']")?.click();
+            document.querySelector('.vjs-big-play-button')?.click();
         });
     }
-    [0, 2000, 4000, 20000].forEach(delay =>
+    [0, 1000, 2000, 4000, 6000, 8000, 20000].forEach(delay =>
         setTimeout(() => requestAnimationFrame(cleanPage), delay)
     );
 })();
