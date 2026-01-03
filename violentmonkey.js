@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name        Adblocker for Anacon
 // @namespace   github.com/kiriles90
-// @version     4.6
-// @date        2026-01-03
+// @version     4.8
+// @date        2026-01-04
 // @author      github.com/kiriles90
 // @updateURL   https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
 // @downloadURL https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
@@ -14,7 +14,7 @@
     const m3u8 = document.querySelector('#live-stream source') ? document.querySelector('#live-stream source').src : null;
     if (m3u8 && m3u8.includes('.m3u8')) {
         window.location.href = m3u8;
-       return;
+        return;
     }
     const adsSelector = 'center,.adsbygoogle,.donate-button,.fc-message-root,.ft-container.ft-left-pos,.ipr-container';
     function cleanPage() {
