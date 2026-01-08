@@ -1,19 +1,24 @@
 // ==UserScript==
 // @name        Adblocker for Anacon
 // @namespace   github.com/kiriles90
-// @version     4.8
-// @date        2026-01-04
+// @version     5.0
+// @date        2026-01-09
 // @author      github.com/kiriles90
 // @updateURL   https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
 // @downloadURL https://raw.githubusercontent.com/kiriles90/Adblocker-for-Anacon/master/violentmonkey.js
 // @match       *://*anacon.org/*
+// @match       *://*alphacyprus.com.cy/*
 // @run-at      document-end
 // @grant       none
 // ==/UserScript==
 (() => {
     const m3u8 = document.querySelector('#live-stream source') ? document.querySelector('#live-stream source').src : null;
+    const m3u8b = document.body.innerHTML.split('hls: \'')[1].split('\',')[0] || null;
     if (m3u8 && m3u8.includes('.m3u8')) {
         window.location.href = m3u8;
+        return;
+    } else if (m3u8b && m3u8b.includes('.m3u8')) {
+        window.location.href = m3u8b;
         return;
     }
     const adsSelector = 'center,.adsbygoogle,.donate-button,.fc-message-root,.ft-container.ft-left-pos,.ipr-container';
